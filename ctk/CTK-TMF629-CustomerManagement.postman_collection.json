@@ -1,0 +1,1604 @@
+{
+	"info": {
+		"_postman_id": "70d0751f-7193-4b11-99d9-904c2764bb70",
+		"name": "CTK-TMF629-CustomerManagement",
+		"description": "This is Swagger UI environment generated for the TMF Trouble Ticket specification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "05b40da7-6751-45d2-9459-2c17bd05ee1a",
+			"name": "TC_Cust_N1 – Create new Customer with minimum required information",
+			"item": [
+				{
+					"_postman_id": "c86a69fd-52a4-4525-baf7-61a95ec01454",
+					"name": "Create a customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e67a810-8471-43ad-97ff-89b9819813f7",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"//Response Code 201-Created",
+									"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    pm.globals.set(\"IDCM1\", instance.id);",
+									"    pm.globals.set(\"HREFCM1\", instance.href);",
+									"    pm.globals.set(\"NAMECM1\", instance.name);",
+									"",
+									"",
+									"    var requiredAttributes = [ 'name', 'id', 'href' ];",
+									"    pm.test('Instance ' +index+ ' has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    ",
+									"    ",
+									"    pm.test(\"Location on header matches expected\", function (){",
+									"        pm.expect(pm.response.headers.get(\"Location\")).to.equal(request.url + \"/\" +pm.globals.get(\"IDCM1\"));",
+									"    });",
+									"    ",
+									"    ",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   pm.globals.set(\"IDCM1\", instance.id);",
+									"    pm.globals.set(\"HREFCM1\", instance.href);",
+									"    pm.globals.set(\"NAMECM1\", instance.name);",
+									"",
+									"",
+									"    var requiredAttributes = [ 'name', 'id', 'href' ];",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    pm.test(\"Location on header matches expected\", function (){",
+									"        pm.expect(pm.response.headers.get(\"Location\")).to.equal(request.url + \"/\" +pm.globals.get(\"IDCM1\"));",
+									"    });",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Smith\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "b4724a91-0da8-42a5-8715-644e170d792b",
+					"name": "get All customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0aae9c44-014c-4293-9710-e590d0676eff",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID1 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM1\"));",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "a73cd022-2257-4035-ac5e-11934d26646c",
+					"name": "Get one customer by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d9c1b2ef-9089-442e-99c9-bbd145dd8680",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    else {",
+									"        pm.test('Only ' + pm.globals.get('IDCM1') + \" expected to be returned on this GET\", function(){",
+									"            pm.expect(1).to.equal(0); ",
+									"        });",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    else {",
+									"        pm.test('Only ' + pm.globals.get('IDCM1') + \" expected to be returned on this GET\", function(){",
+									"            pm.expect(1).to.equal(0); ",
+									"        });",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID1 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM1\"));",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/{{IDCM1}}",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"{{IDCM1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "ab4635ee-6d93-4813-8ad0-936d6adafd7f",
+			"name": "TC_Cust_N2 – Create new Customer with minimum required information",
+			"item": [
+				{
+					"_postman_id": "28f0bbee-ea3b-478a-a423-40cf96eca211",
+					"name": "Create a customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8aa9a19d-928f-40c8-a7a3-85609df09aec",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"//Response Code 201-Created",
+									"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    pm.globals.set(\"IDCM2\", instance.id);",
+									"    pm.globals.set(\"HREFCM2\", instance.href);",
+									"    pm.globals.set(\"NAMECM2\", instance.name);",
+									"",
+									"",
+									"    var requiredAttributes = [ 'name', 'id', 'href' ];",
+									"    pm.test('Instance ' +index+ ' has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    ",
+									"    ",
+									"    pm.test(\"Location on header matches expected\", function (){",
+									"        pm.expect(pm.response.headers.get(\"Location\")).to.equal(request.url + \"/\" +pm.globals.get(\"IDCM2\"));",
+									"    });",
+									"    ",
+									"    ",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   pm.globals.set(\"IDCM2\", instance.id);",
+									"    pm.globals.set(\"HREFCM2\", instance.href);",
+									"    pm.globals.set(\"NAMECM2\", instance.name);",
+									"",
+									"",
+									"    var requiredAttributes = [ 'name', 'id', 'href' ];",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    pm.test(\"Location on header matches expected\", function (){",
+									"        pm.expect(pm.response.headers.get(\"Location\")).to.equal(request.url + \"/\" +pm.globals.get(\"IDCM2\"));",
+									"    });",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"nanana\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "a615b263-b511-4b31-af40-ec1ab2e9c894",
+					"name": "get All customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "db71410f-44b4-413c-8a63-a9b23d26df91",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM2\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM2\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID2 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM2\"));",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "73bfd7bb-54c1-4af8-967e-eb5ab87009db",
+					"name": "Get one customer by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e4c6f5e-45c2-41ab-80fe-b15fcb41b863",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM2\")); });",
+									"        ",
+									"    }",
+									"    else {",
+									"        pm.test('Only ' + pm.globals.get('IDCM2') + \" expected to be returned on this GET\", function(){",
+									"            pm.expect(1).to.equal(0); ",
+									"        });",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM2\")); });",
+									"        ",
+									"    }",
+									"    else {",
+									"        pm.test('Only ' + pm.globals.get('IDCM2') + \" expected to be returned on this GET\", function(){",
+									"            pm.expect(1).to.equal(0); ",
+									"        });",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID2 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM2\"));",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/{{IDCM2}}",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"{{IDCM2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "91c1447b-7cb5-4eab-8cdd-cadab7cd8f90",
+			"name": "TC_Cust_N3 – Search for Customers with specific characteristics",
+			"item": [
+				{
+					"_postman_id": "d093d25c-de25-4f09-9912-a435e46ef7c3",
+					"name": "get All customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c77c428-8264-4f73-a450-dc45472c56dd",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM2\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM2\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID1 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM1\"));",
+									"});",
+									"pm.test(\"ID2 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM2\"));",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "7620c777-4f4b-4e36-8257-817fba6ec088",
+					"name": "Get a customer by name \"John Smith\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c84221df-6a60-4c05-98c9-6ea71ad75143",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"     if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"       pm.test('ID: ' + pm.globals.get(\"IDCM2\") + ' should not be returned by this search', function() {",
+									"           pm.expect(1).to.equal(0);",
+									"       });",
+									"       ",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"       pm.test('ID: ' + pm.globals.get(\"IDCM2\") + ' should not be returned by this search', function() {",
+									"           pm.expect(1).to.equal(0);",
+									"       });",
+									"       ",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID1 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM1\"));",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer?name=\"John Smith\"",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "\"John Smith\""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "cae448e9-83d7-4dd4-b280-6379e399eef5",
+			"name": "TC_Cust_N4 – Filtered retrieval of Customer",
+			"item": [
+				{
+					"_postman_id": "5f79683c-a619-4e1e-8bc1-2c811f46e0a8",
+					"name": "Filter ID1 and fields=name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4dd77ca2-da84-455a-a44f-c6dd16852f66",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    var requiredAttributes = ['name' ];  ",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"    // Checking all remaining possible attributes for TroubleTicket, taken from the Swagger file",
+									"    ",
+									"",
+									"    ",
+									"    ",
+									"    pm.test('Only name on body', function(){",
+									"       pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"    });",
+									"    ",
+									"    pm.test('Name is: ' + pm.globals.get(\"NAMECM1\"), function(){",
+									"        pm.expect(instance.name).to.equal(pm.globals.get('NAMECM1'));",
+									"    });",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    var requiredAttributes = ['name' ];  ",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"    // Checking all remaining possible attributes for TroubleTicket, taken from the Swagger file",
+									"    ",
+									"",
+									"    ",
+									"    ",
+									"    pm.test('Only name on body', function(){",
+									"       pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"    });",
+									"    ",
+									"    pm.test('Name is: ' + pm.globals.get(\"NAMECM1\"), function(){",
+									"        pm.expect(instance.name).to.equal(pm.globals.get('NAMECM1'));",
+									"    });",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/{{IDCM1}}?fields=name",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"{{IDCM1}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "92028aea-bda0-4e5e-97b0-1793e4581e4c",
+			"name": "TC_Cust_N5 – Update an existing Customer resource with only patchable attributes",
+			"item": [
+				{
+					"_postman_id": "18452009-92d7-4b43-b885-6f0978e8a69e",
+					"name": "Patch a customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5151b014-f3e9-4509-9032-1fc23fda344f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"//Response Code 201-Created",
+									"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    pm.globals.set(\"IDCM2\", instance.id);",
+									"    pm.globals.set(\"HREFCM2\", instance.href);",
+									"    pm.globals.set(\"NAMECM2\", instance.name);",
+									"",
+									"",
+									"    var requiredAttributes = [ 'name', 'id', 'href' ];",
+									"    pm.test('Instance ' +index+ ' has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    ",
+									"    ",
+									"",
+									"    ",
+									"    ",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   pm.globals.set(\"IDCM2\", instance.id);",
+									"    pm.globals.set(\"HREFCM2\", instance.href);",
+									"    pm.globals.set(\"NAMECM2\", instance.name);",
+									"",
+									"",
+									"    var requiredAttributes = [ 'name', 'id', 'href' ];",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bob Jones\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/{{IDCM2}}",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"{{IDCM2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "1812c111-1dec-459a-928f-72617ada05c9",
+			"name": "TC_Individual_N6 – Delete an existing Customer resource",
+			"item": [
+				{
+					"_postman_id": "ca639051-956d-4316-8df7-c64e30163af7",
+					"name": "Delete a Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4bc6526-bb7a-4116-bc6f-971bda975153",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bob Jones\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/{{IDCM2}}",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"{{IDCM2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "e22ef479-5414-4d26-ba2f-b6cfde6fa733",
+					"name": "get All customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f91efb49-64b3-4d1e-871b-d351979a8af1",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"     if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"       pm.test('ID: ' + pm.globals.get(\"IDCM2\") + ' should have been deleted on previous test', function() {",
+									"           pm.expect(1).to.equal(0);",
+									"       });",
+									"       ",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDCM1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFCM1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMECM1\")); });",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDCM2\")){",
+									"    ",
+									"       pm.test('ID: ' + pm.globals.get(\"IDCM2\") + ' should have been deleted on previous test', function() {",
+									"           pm.expect(1).to.equal(0);",
+									"       });",
+									"       ",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"ID1 present on body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(pm.globals.get(\"IDCM1\"));",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "b2372922-25bb-4f87-9201-51c990277689",
+			"name": "TC_Cust_E1 – Unknown Customer identifier",
+			"item": [
+				{
+					"_postman_id": "9722a2f0-fe35-438a-acf8-27410fb6b8cf",
+					"name": "Search for a ID that does not exist to get 404 error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a805776c-edf5-4e58-baee-7e7bd5147f2e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/12344123312",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"12344123312"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "9eba5668-4a2a-4284-a55c-559f0cfd6710",
+			"name": "TC_Cust_E2 – Invalid Request – Missing mandatory parameter",
+			"item": [
+				{
+					"_postman_id": "7968f4bc-e5d0-4b3f-b9ac-e48c9507a772",
+					"name": "TC_E2_Post with missing mandatory parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f34d7337-ad31-464c-8993-e14e26d2034d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer"
+							]
+						},
+						"description": "This operation creates a service qualification entity.\nMandatory and non mandatory attributes, additional rules and default values are provided in the specifications document.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "059bf1af-7b30-47fc-a9d5-9bd81e232c2a",
+			"name": "TC_Cust_E3 – Update an existing Customer with non-patchable parameters",
+			"item": [
+				{
+					"_postman_id": "ba664845-5143-41eb-9a85-3d3359945635",
+					"name": "TC_Cust_E3 – Update an existing Customer with non-patchable parameters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "521cd45e-894a-445d-b4a8-0722dfeb0008",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is error\", function () {",
+									"    pm.response.to.be.error",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json;charset=utf-8"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"id\": \"123123123\"\n}"
+						},
+						"url": {
+							"raw": "{{CustomerManagementAPI}}/customer/{{IDCM1}}",
+							"host": [
+								"{{CustomerManagementAPI}}"
+							],
+							"path": [
+								"customer",
+								"{{IDCM1}}"
+							]
+						},
+						"description": "This operation creates a service qualification entity.\nMandatory and non mandatory attributes, additional rules and default values are provided in the specifications document.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
