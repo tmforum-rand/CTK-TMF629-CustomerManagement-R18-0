@@ -7,11 +7,11 @@
 	},
 	"item": [
 		{
-			"_postman_id": "05b40da7-6751-45d2-9459-2c17bd05ee1a",
+			"_postman_id": "f1fcaa63-a255-42eb-9150-f1d43206c0a5",
 			"name": "TC_Cust_N1 – Create new Customer with minimum required information",
 			"item": [
 				{
-					"_postman_id": "c86a69fd-52a4-4525-baf7-61a95ec01454",
+					"_postman_id": "f5a16677-68e0-4982-a510-c38cb2d5cf57",
 					"name": "Create a customer",
 					"event": [
 						{
@@ -118,7 +118,7 @@
 					"response": []
 				},
 				{
-					"_postman_id": "b4724a91-0da8-42a5-8715-644e170d792b",
+					"_postman_id": "1197a3d7-066d-4cc3-af39-bb845fd017b4",
 					"name": "get All customers",
 					"event": [
 						{
@@ -230,7 +230,7 @@
 					"response": []
 				},
 				{
-					"_postman_id": "a73cd022-2257-4035-ac5e-11934d26646c",
+					"_postman_id": "66165da8-c67f-446b-889c-ada6d2f4be1b",
 					"name": "Get one customer by ID",
 					"event": [
 						{
@@ -354,11 +354,11 @@
 			]
 		},
 		{
-			"_postman_id": "ab4635ee-6d93-4813-8ad0-936d6adafd7f",
+			"_postman_id": "cae36207-2543-47a9-a0a4-583354a3cf6f",
 			"name": "TC_Cust_N2 – Create new Customer with minimum required information",
 			"item": [
 				{
-					"_postman_id": "28f0bbee-ea3b-478a-a423-40cf96eca211",
+					"_postman_id": "7ef1cb9f-4595-4946-9353-78d07cfc92a3",
 					"name": "Create a customer",
 					"event": [
 						{
@@ -462,7 +462,7 @@
 					"response": []
 				},
 				{
-					"_postman_id": "a615b263-b511-4b31-af40-ec1ab2e9c894",
+					"_postman_id": "5a8d7a04-718d-402a-a8b9-453a49f46e60",
 					"name": "get All customers",
 					"event": [
 						{
@@ -574,7 +574,7 @@
 					"response": []
 				},
 				{
-					"_postman_id": "73bfd7bb-54c1-4af8-967e-eb5ab87009db",
+					"_postman_id": "cb15daef-7e53-4eef-80d3-a8f6230285f5",
 					"name": "Get one customer by ID",
 					"event": [
 						{
@@ -698,11 +698,11 @@
 			]
 		},
 		{
-			"_postman_id": "91c1447b-7cb5-4eab-8cdd-cadab7cd8f90",
+			"_postman_id": "934904d0-df91-471a-86f8-53eaef31b237",
 			"name": "TC_Cust_N3 – Search for Customers with specific characteristics",
 			"item": [
 				{
-					"_postman_id": "d093d25c-de25-4f09-9912-a435e46ef7c3",
+					"_postman_id": "dd20ae6d-467e-4196-a0b6-47ea0d429a41",
 					"name": "get All customers",
 					"event": [
 						{
@@ -857,7 +857,7 @@
 					"response": []
 				},
 				{
-					"_postman_id": "7620c777-4f4b-4e36-8257-817fba6ec088",
+					"_postman_id": "8c3727df-df47-4c85-ae80-01bb81ff7e00",
 					"name": "Get a customer by name \"John Smith\"",
 					"event": [
 						{
@@ -1015,11 +1015,11 @@
 			]
 		},
 		{
-			"_postman_id": "cae448e9-83d7-4dd4-b280-6379e399eef5",
+			"_postman_id": "f2864a50-609b-40e7-bbfe-226f20a75cc7",
 			"name": "TC_Cust_N4 – Filtered retrieval of Customer",
 			"item": [
 				{
-					"_postman_id": "5f79683c-a619-4e1e-8bc1-2c811f46e0a8",
+					"_postman_id": "5f4b7407-4beb-455f-a244-e8fa78b42b8e",
 					"name": "Filter ID1 and fields=name",
 					"event": [
 						{
@@ -1126,11 +1126,11 @@
 			]
 		},
 		{
-			"_postman_id": "92028aea-bda0-4e5e-97b0-1793e4581e4c",
+			"_postman_id": "a10b22c0-052b-4e9f-93f2-2a25e7ba5b3a",
 			"name": "TC_Cust_N5 – Update an existing Customer resource with only patchable attributes",
 			"item": [
 				{
-					"_postman_id": "18452009-92d7-4b43-b885-6f0978e8a69e",
+					"_postman_id": "29529d17-abb0-45a8-b89e-afe164c8fb7a",
 					"name": "Patch a customer",
 					"event": [
 						{
@@ -1233,11 +1233,11 @@
 			]
 		},
 		{
-			"_postman_id": "1812c111-1dec-459a-928f-72617ada05c9",
+			"_postman_id": "687c4974-672e-4fa7-8d73-a3cd20b60b02",
 			"name": "TC_Individual_N6 – Delete an existing Customer resource",
 			"item": [
 				{
-					"_postman_id": "ca639051-956d-4316-8df7-c64e30163af7",
+					"_postman_id": "b243dafb-a0d8-4450-8102-6d153f598431",
 					"name": "Delete a Customer",
 					"event": [
 						{
@@ -1287,7 +1287,7 @@
 					"response": []
 				},
 				{
-					"_postman_id": "e22ef479-5414-4d26-ba2f-b6cfde6fa733",
+					"_postman_id": "a93a26eb-cafb-4b52-80dd-9b89dd665801",
 					"name": "get All customers",
 					"event": [
 						{
@@ -1440,11 +1440,11 @@
 			]
 		},
 		{
-			"_postman_id": "b2372922-25bb-4f87-9201-51c990277689",
+			"_postman_id": "94802d2b-deb8-402f-b1bd-2bf853579881",
 			"name": "TC_Cust_E1 – Unknown Customer identifier",
 			"item": [
 				{
-					"_postman_id": "9722a2f0-fe35-438a-acf8-27410fb6b8cf",
+					"_postman_id": "29e10013-a59f-44a9-824c-2f2636eff8e6",
 					"name": "Search for a ID that does not exist to get 404 error",
 					"event": [
 						{
@@ -1494,11 +1494,11 @@
 			]
 		},
 		{
-			"_postman_id": "9eba5668-4a2a-4284-a55c-559f0cfd6710",
+			"_postman_id": "9c64d195-39bf-4625-bbe8-1ca0d73882ae",
 			"name": "TC_Cust_E2 – Invalid Request – Missing mandatory parameter",
 			"item": [
 				{
-					"_postman_id": "7968f4bc-e5d0-4b3f-b9ac-e48c9507a772",
+					"_postman_id": "030cf1e1-2257-475a-a6fe-733747c55930",
 					"name": "TC_E2_Post with missing mandatory parameters",
 					"event": [
 						{
@@ -1547,11 +1547,11 @@
 			]
 		},
 		{
-			"_postman_id": "059bf1af-7b30-47fc-a9d5-9bd81e232c2a",
+			"_postman_id": "72334e00-8267-4f16-83e6-d1d9f2c3e8a1",
 			"name": "TC_Cust_E3 – Update an existing Customer with non-patchable parameters",
 			"item": [
 				{
-					"_postman_id": "ba664845-5143-41eb-9a85-3d3359945635",
+					"_postman_id": "e23e0e7a-13b6-4513-b8da-a21efa509913",
 					"name": "TC_Cust_E3 – Update an existing Customer with non-patchable parameters",
 					"event": [
 						{
